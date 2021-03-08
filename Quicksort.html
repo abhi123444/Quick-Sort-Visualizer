@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort Visualizer</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="./lib/anime.min.js"></script>
+    <script src="./lib/anime.js"></script>
+    <script src="./lib/anime.es.js"></script>
+</head>
+<style>
+
+    header{
+        height: 100px;
+        background-color: chocolate;
+    }
+
+    .box{
+        background-color: black;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 600px){
+        .bar{
+            width: 10px;
+            margin: 0;
+        }
+    }
+    .bar{
+        margin-left: 1%;
+        width: 50px;
+        /*height: 200px;*/
+        background-color: blanchedalmond;
+        animation: background-color 1s;
+    }
+  
+    button{
+        width: 100%;
+        height: 40px;
+        background-color: chocolate;
+    }
+</style>
+<body onload="create();">
+    <div class="container">
+        <header>
+          //create other sorts and link here
+        </header>
+
+    <div class="box">
+        <div id="1" class="bar"><p id="1"></p></div>
+        <div id="2" class="bar"><p id="2"></p></div>
+        <div id="3" class="bar"><p id="3"></p></div>
+        <div id="4" class="bar"><p id="4"></p></div>
+        <div id="5" class="bar"><p id="5"></p></div>
+        <div id="6" class="bar"><p id="6"></p></div>
+        <div id="7" class="bar"><p id="7"></p></div>
+        <div id="8" class="bar"><p id="8"></p></div>
+        <div id="9" class="bar"><p id="9"></p></div>
+        <div id="10" class="bar"><p id="10"></p></div>
+        <div id="11" class="bar"><p id="11"></p></div>
+        <div id="12" class="bar"><p id="12"></p></div>
+        <div id="13" class="bar"><p id="13"></p></div>
+        <div id="14" class="bar"><p id="14"></p></div>
+        <div id="15" class="bar"><p id="15"></p></div>
+        <div id="16" class="bar"><p id="16"></p></div>
+        <div id="17" class="bar"><p id="17"></p></div>
+        <div id="18" class="bar"><p id="18"></p></div>
+        <div id="19" class="bar"><p id="19"></p></div>
+        <div id="20" class="bar"><p id="20"></p></div>
+    </div>
+    <button onclick="sorting()">Sorting Start</button>
+</div>
+    <script>
+        var array=[9,42,7,25,48,36,20,5,39,1,31,43,14,6,50,2,37,24,17,4];
+        
+        async function create() {
+            for (let index = 0; index < array.length; index++) {
+                const element = array[index];
+                var bar = document.getElementById(index+1);
+                bar.style.height=(element*10);
+                document.getElementById(index+1).innerHTML = (element*10);   
+            }
+        }
+        var sort_lenght = array.length;
+        async function sorting(){
+            var n;
+            var element;
+            for (let index = 0; index < array.length; index++) {
+                if(sort_lenght <=0){
+                    console.log("sorting ended");
+                }else{
+                for(let j = 0; j < sort_lenght;j++){
+                    if(array[j]>array[j + 1]){
+                        await swap(array, j, j + 1);
+                       n=j+1;   
+                    }
+                }
+                console.log("sort lenght :"+sort_lenght);
+                sort_lenght--;
+            }
+                create();
+                for (let index = 20; index >n; index--) {
+                    var bar = document.getElementById(index);
+                    bar.style.backgroundColor="red";
+                }
+            }
+        }
+        async function swap(arr, a, b) {
+            await sleep(50);
+            let temp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = temp;
+        }
+        function sleep(ms) {
+             return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+</body>
+</html>
